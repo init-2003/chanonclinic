@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ground: #f2f7f4;
+  --color-ground-2: #e2eee7;
+  --color-ink: #112a23;
+  --color-ink-2: #416156;
+  --color-field: #0e3328;
+  --color-field-deep: #154235;
+  --color-field-line: #1f4f41;
+  --color-on-field: #f2f7f4;
+  --color-on-field-2: #a8cbbf;
+  --color-panel: #e2eee7;
+  --color-panel-line: #bdd8cb;
+  --color-accent: #1b7a5a;
+  --color-accent-text: #146348;
+  --color-accent-light: #6ee7b7;
+  --color-rule: #cce2d8;
+  --font-serif: var(--font-maitree), Georgia, serif;
+  --font-sans: var(--font-instrument-sans), "Luxury Sans", var(--font-noto-thai), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  /* Medical Green Clinical Design Tokens */
+  --dp-color-ground: #f2f7f4;
+  --dp-color-ground-2: #e2eee7;
+  --dp-color-ink: #112a23;
+  --dp-color-ink-2: #416156;
+  --dp-color-field: #0e3328;
+  --dp-color-field-deep: #154235;
+  --dp-color-field-line: #1f4f41;
+  --dp-color-on-field: #f2f7f4;
+  --dp-color-on-field-2: #a8cbbf;
+  --dp-color-panel: #e2eee7;
+  --dp-color-panel-line: #bdd8cb;
+  --dp-color-accent: #1b7a5a;
+  --dp-color-accent-text: #146348;
+  --dp-color-accent-light: #6ee7b7;
+  --dp-color-rule: #cce2d8;
+
+  --dp-typography-serif: var(--font-maitree), Georgia, "Times New Roman", serif;
+  --dp-typography-sans: var(--font-instrument-sans), "Luxury Sans", var(--font-noto-thai), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --dp-typography-body: 1rem; /* 16px base size */
+  --dp-typography-leading: 1.75; /* 1.7-1.8 line-height for Thai typography accessibility */
+  --dp-typography-serif-fallback: Georgia, "Times New Roman", serif;
+  --dp-typography-label: 0.8125rem; /* 13px */
+  --dp-typography-label-tracking: 0.16em;
+  --dp-typography-btn: 1rem; /* >= 16px for buttons & controls per accessibility standard */
+  --dp-typography-reading-small: 0.9375rem; /* 15px */
+  --dp-typography-caption: 0.875rem; /* 14px */
+  --dp-typography-attribution: 0.8125rem; /* 13px */
+  --dp-typography-item-title: 1.375rem; /* 22px */
+  --dp-typography-item-leading: 1.3;
+  --dp-typography-item-tracking: -0.01em;
+
+  --dp-spacing-pad: 3rem;
+  --dp-spacing-gap: 1.5rem;
+  --dp-spacing-pad-mid: 2rem;
+  --dp-spacing-pad-narrow: 1.25rem;
+  --dp-spacing-gap-compact: 1rem;
+  --dp-spacing-section-block: 6rem;
+  --dp-spacing-section-roomy: 7rem;
+
+  --dp-radius-control: 0;
+  --dp-border-focus-width: 2px;
+  --dp-border-hairline: 1px;
+
+  --dp-motion-interaction: 150ms;
+  --dp-motion-door-content: 600ms;
+  --dp-motion-door-delay: 450ms;
+  --dp-motion-door-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+html {
+  font-size: 16px; /* 1rem = 16px world standard */
+  scroll-behavior: smooth;
+  background-color: var(--dp-color-ground);
+  color: var(--dp-color-ink);
+  overflow-x: clip;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide native browser scrollbars */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+body {
+  font-family: var(--dp-typography-sans);
+  background-color: var(--dp-color-ground);
+  color: var(--dp-color-ink);
+  line-height: var(--dp-typography-leading);
+  font-size: 1rem; /* 16px base body */
+  overflow-x: clip;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Typography Utility Classes */
+.font-serif {
+  font-family: var(--dp-typography-serif);
+}
+
+.font-sans {
+  font-family: var(--dp-typography-sans);
+}
+
+.tracking-label {
+  letter-spacing: var(--dp-typography-label-tracking);
+}
+
+/* Accessibility Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: var(--dp-border-focus-width) solid var(--dp-color-accent);
+  outline-offset: 2px;
+}
+
+/* Mobile iOS Safari input auto-zoom prevention: ensure inputs >= 16px */
+input,
+select,
+textarea {
+  font-size: 1rem !important; /* 16px */
+}
+
+/* Rectangular Medical Buttons (minimum 3rem height, minimum 16px font size) */
+.btn-luxury-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-height: 3.25rem;
+  padding: 0.875rem 2rem;
+  background-color: var(--dp-color-field);
+  color: var(--dp-color-on-field);
+  font-family: var(--dp-typography-sans);
+  font-size: var(--dp-typography-btn); /* 1rem = 16px */
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 0;
+  border: 1px solid var(--dp-color-field);
+  transition: background-color var(--dp-motion-interaction), border-color var(--dp-motion-interaction), transform var(--dp-motion-interaction);
+}
+
+.btn-luxury-primary:hover {
+  background-color: var(--dp-color-field-deep);
+  border-color: var(--dp-color-field-deep);
+}
+
+.btn-luxury-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-luxury-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-height: 3.25rem;
+  padding: 0.875rem 2rem;
+  background-color: transparent;
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-sans);
+  font-size: var(--dp-typography-btn); /* 1rem = 16px */
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 0;
+  border: 1px solid var(--dp-color-accent);
+  transition: background-color var(--dp-motion-interaction), color var(--dp-motion-interaction), transform var(--dp-motion-interaction);
+}
+
+.btn-luxury-secondary:hover {
+  background-color: var(--dp-color-ground-2);
+  color: var(--dp-color-ink);
+}
+
+.btn-luxury-secondary:active {
+  transform: translateY(1px);
+}
+
+.btn-luxury-on-charcoal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-height: 3.25rem;
+  padding: 0.875rem 2rem;
+  background-color: var(--dp-color-ground);
+  color: var(--dp-color-field);
+  font-family: var(--dp-typography-sans);
+  font-size: var(--dp-typography-btn); /* 1rem = 16px */
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 0;
+  border: 1px solid var(--dp-color-ground);
+  transition: background-color var(--dp-motion-interaction), color var(--dp-motion-interaction), transform var(--dp-motion-interaction);
+}
+
+.btn-luxury-on-charcoal:hover {
+  background-color: #ffffff;
+}
+
+.btn-luxury-on-charcoal:active {
+  transform: translateY(1px);
+}
+
+/* Secondary Action Text Links with Fine Clinical Underline */
+.link-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  gap: 0.4rem;
+  font-family: var(--dp-typography-sans);
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--dp-color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--dp-color-accent);
+  text-underline-offset: 4px;
+  transition: color var(--dp-motion-interaction), text-decoration-color var(--dp-motion-interaction);
+}
+
+.link-luxury:hover {
+  color: var(--dp-color-accent-text);
+  text-decoration-color: var(--dp-color-accent-text);
+}
+
+/* Button Sheen (GPU transform only) */
+.btn-luxury-primary,
+.btn-luxury-on-charcoal {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-luxury-primary::after,
+.btn-luxury-on-charcoal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.14) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-luxury-primary:hover::after,
+.btn-luxury-on-charcoal:hover::after {
+  transform: translateX(120%);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  .btn-luxury-primary:active,
+  .btn-luxury-secondary:active,
+  .btn-luxury-on-charcoal:active {
+    transform: none !important;
+  }
+  .btn-luxury-primary::after,
+  .btn-luxury-on-charcoal::after {
+    display: none;
+  }
+}
+
+/* Hairlines */
+.border-gold-hairline {
+  border: 1px solid var(--dp-color-accent);
+}
+
+.border-rule-hairline {
+  border: 1px solid var(--dp-color-rule);
+}
+
+.border-field-hairline {
+  border: 1px solid var(--dp-color-field-line);
+}
+
+/* Hide Native Scrollbar across all browsers */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+

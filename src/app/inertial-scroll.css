@@ -1,0 +1,2 @@
+/* Lenis owns interpolation; browser smoothing must not add a second animation. */
+html.lenis { scroll-behavior: auto; }

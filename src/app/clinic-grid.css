@@ -1,0 +1,86 @@
+:root {
+  --clinic-grid-line: rgba(17, 42, 35, 0.16);
+  --clinic-section-line: rgba(17, 42, 35, 0.26);
+}
+
+/* Shared ruled layout: one boundary per section and one line between cells. */
+.clinic-section {
+  padding-block: 0;
+  border-top: 1px solid var(--clinic-section-line);
+}
+#hero.clinic-section { border-top: 0; }
+.clinic-section-frame {
+  width: calc(100% - 32px);
+  max-width: 1280px;
+  margin-inline: auto;
+  border-inline: 1px solid var(--clinic-grid-line);
+}
+.clinic-section-layout { gap: 0; }
+.clinic-section-content {
+  min-width: 0;
+  padding: 40px 20px;
+}
+.clinic-section-index {
+  padding: 64px 24px;
+  border-right: 1px solid var(--clinic-grid-line);
+}
+.clinic-grid, .clinic-split {
+  --clinic-cell-bg: var(--dp-color-ground);
+  display: grid;
+  gap: 1px;
+  padding: 1px;
+  background: var(--clinic-grid-line);
+}
+.clinic-grid--sage { --clinic-cell-bg: #e2eee7; }
+.clinic-grid--white { --clinic-cell-bg: #f8fbf9; }
+.clinic-grid > *, .clinic-split > * {
+  min-width: 0;
+  border: 0;
+  margin: 0;
+  background: var(--clinic-cell-bg);
+}
+.clinic-facts-grid > *, .clinic-value-grid > *, .clinic-split > * { padding: 24px; }
+.clinic-grid > * { box-shadow: none; }
+.clinic-about-panel { column-gap: 0; }
+.clinic-about-panel > :first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.clinic-introduction-grid { gap: 0; }
+.clinic-introduction-grid > * { min-width: 0; }
+#hero .clinic-introduction-grid > :last-child { border-left: 0; }
+.clinic-specialty-table { border: 1px solid var(--clinic-grid-line); border-bottom: 0; }
+.clinic-specialty-row {
+  border-bottom-color: var(--clinic-grid-line);
+  padding: 24px;
+}
+
+@media (min-width: 640px) {
+  .clinic-section-frame { width: calc(100% - 48px); }
+  .clinic-section-content { padding: 48px 28px; }
+}
+@media (min-width: 768px) {
+  .clinic-specialty-row { padding: 0; gap: 0; }
+  .clinic-specialty-row > * { padding: 24px 20px; }
+  .clinic-specialty-row > * + * { border-left: 1px solid var(--clinic-grid-line); }
+}
+@media (min-width: 1024px) {
+  .clinic-section-frame {
+    width: min(1280px, calc(100% - 112px));
+    margin-left: auto;
+    margin-right: max(80px, calc((100% - 1280px) / 2));
+  }
+  .clinic-section-content { padding: 64px 28px; }
+  .clinic-introduction-grid { padding: 0; align-items: stretch; }
+  .clinic-introduction-grid > * { padding: 64px 28px; margin-top: 0; }
+  /* Reserve only the top-right corner occupied by the floating section labels. */
+  .clinic-section-heading { max-width: calc(100% - 260px); }
+  .clinic-introduction-grid > :last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 64px;
+  }
+}
+
